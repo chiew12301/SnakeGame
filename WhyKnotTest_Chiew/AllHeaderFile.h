@@ -8,6 +8,7 @@
 //Below are game file
 #include "GameSystem.h"
 #include "Board.h"
+#include "Time.h"
 
 //FoodClass
 #include "Food.h"

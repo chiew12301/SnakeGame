@@ -1,55 +1,55 @@
 #include "Time.h"
 
-float Time::mTimeScale                = 1.0f;
-float Time::mRealTime                 = 0.0f;
-float Time::mTime                     = 0.0f;
-float Time::mDeltaTime                = 0.0f;
-float Time::mUnscaledDeltaTime        = 0.0f;
-float Time::mAccumulatedRealDeltaTime = 0.0f;
+Time* Time::_instance = nullptr;
 
-float Time::GetTime()
+Time::Time()
 {
-    return mTime;
+	Reset();
+	_TimeScale = 1.0f;
+	_DeltaTime = std::chrono::duration<float>(0.0f);
 }
 
-float Time::GetUnscaledTime()
+Time::~Time()
 {
-    return mRealTime;
+
 }
 
-float Time::GetDeltaTime()
+Time* Time::Instance()
 {
-    return mDeltaTime;
+	if (_instance == nullptr)
+	{
+		_instance = new Time();
+	}
+	return _instance;
 }
 
-float Time::GetUnscaledDeltaTime()
+void Time::Release()
 {
-    return mUnscaledDeltaTime;
+	delete _instance;
+	_instance = nullptr;
 }
 
-float Time::GetTimeScale()
+void Time::Reset()
 {
-    return mTimeScale;
+	_StartTime = std::chrono::system_clock::now();
 }
 
-void Time::SetTimeScale(const float& timeScale)
+float Time::DeltaTime()
 {
-    mTimeScale = timeScale;
+	return _DeltaTime.count();
 }
 
-void Time::MeasureTime(const float& minFrameDt)
+void Time::TimeScale(float t)
 {
-    mAccumulatedRealDeltaTime = 0.0f;
-    while (mAccumulatedRealDeltaTime <= minFrameDt)
-    {
-        const float newRealTime = clock();
-        mUnscaledDeltaTime = newRealTime - mRealTime;
-        mRealTime = newRealTime;
-        mAccumulatedRealDeltaTime += mUnscaledDeltaTime;
-    }
-    
-    mDeltaTime = mAccumulatedRealDeltaTime * mTimeScale;
-    mTime += mDeltaTime;
+	_TimeScale = t;
 }
 
+float Time::TimeScale()
+{
+	return _TimeScale;
+}
 
+void Time::Tick()
+{
+	_DeltaTime = std::chrono::system_clock::now() - _StartTime;
+}

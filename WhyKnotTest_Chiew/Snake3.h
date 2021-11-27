@@ -5,6 +5,6 @@ class Snake3 : public Snake
 {
 public:
 	Snake3(int startXpos, int startYpos, int bWidth, int bHeight);
-	void Update(int elapsedTime);
+	void Update(float dt);
 };
 

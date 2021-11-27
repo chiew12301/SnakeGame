@@ -7,9 +7,10 @@ Snake::Snake(int startXpos, int startYpos, int bWidth, int bHeight)
 	boardWidth = bWidth;
 	boardHeight = bHeight;
 	direction = 'S';
+	latestTime = 0.0f;
 }
 
-void Snake::Update(int elapsedTime)
+void Snake::Update(float dt)
 {
 	//sub class will handle themself
 }
@@ -49,48 +50,48 @@ bool Snake::collision(int colliderXpos, int colliderYpos)
 	}	
 }
 
-void Snake::UpdateMove(int elapsedTime)
+void Snake::UpdateMove(float dt)
 {
 	switch (direction)
 	{
 	case('W'):
-		if (yPos - speed < 0)
+		if (yPos - 1 < 0)
 		{
-			yPos = boardHeight - (speed - yPos);
+			yPos = boardHeight - (1 - yPos);
 		}
 		else
 		{
-			yPos -= speed;
+			yPos -= 1;
 		}
 		break;
 	case('S'):
-		if (yPos + speed > boardHeight)
+		if (yPos + 1 > boardHeight)
 		{
-			yPos = (yPos + speed) - boardHeight;
+			yPos = (yPos + 1) - boardHeight;
 		}
 		else
 		{
-			yPos += speed;
+			yPos += 1;
 		}
 		break;
 	case('A'):
-		if (xPos - speed < 0)
+		if (xPos - 1 < 0)
 		{
-			xPos = boardWidth - (speed - xPos);
+			xPos = boardWidth - (1 - xPos);
 		}
 		else
 		{
-			xPos -= speed;
+			xPos -= 1;
 		}
 		break;
 	case('D'):
-		if (xPos + speed > boardWidth)
+		if (xPos + 1 > boardWidth)
 		{
-			xPos = (xPos + speed) - boardWidth;
+			xPos = (xPos + 1) - boardWidth;
 		}
 		else
 		{
-			xPos += speed;
+			xPos += 1;
 		}
 		break;
 	}

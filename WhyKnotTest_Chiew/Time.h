@@ -2,27 +2,34 @@
 #include <iostream>
 #include <Windows.h>
 #include <stdlib.h>
-#include <time.h>
+#include <chrono>
 
 class Time
 {
-public:
-	static float GetTime();
-	static float GetUnscaledTime();
-
-	static float GetDeltaTime();
-	static float GetUnscaledDeltaTime();
-
-	static float GetTimeScale();
-	static void SetTimeScale(const float& timeScale);
-
-	static void MeasureTime(const float& minFrameDt);
-
 private:
-	static float mTimeScale;
-	static float mRealTime;
-	static float mTime;
-	static float mDeltaTime;
-	static float mUnscaledDeltaTime;
-	static float mAccumulatedRealDeltaTime;
+	static Time* _instance; //singletons
+
+	std::chrono::system_clock::time_point _StartTime;
+	std::chrono::duration<float> _DeltaTime;
+	float _TimeScale;
+
+	Time();
+
+	~Time();
+
+public:
+	static Time* Instance();
+	static void Release();
+
+	void Reset();
+
+	float DeltaTime();
+
+	void TimeScale(float t = 1.0f); //default is 1.0f
+
+	float TimeScale();
+
+	void Tick();
 };
+
+

@@ -5,6 +5,7 @@ GameSystem::GameSystem()
 	isExit = false;
 	isMainMenuCompleted = false;
 	isSelectedSnake = false;
+	gameTime = Time::Instance();
 	GameLoop();
 }
 
@@ -17,10 +18,6 @@ GameSystem::~GameSystem()
 void GameSystem::GameLoop()
 {
 	//First Enter Game
-	int startTime = 0;
-	int currentTime = 0;
-	int elapsedTime = 0;
-	int lastUpdateTime = 0;
 	do
 	{
 		MainMenu();
@@ -32,10 +29,11 @@ void GameSystem::GameLoop()
 			if (isSelectedSnake == true)
 			{
 				bool isGameEnd = false;
-				startTime = clock();
 				system("CLS");
+				gameTime->Reset();
 				do //player will able play game inside
 				{
+					gameTime->Tick();
 					if (GetAsyncKeyState(VK_ESCAPE))
 					{
 						isExit = true;
@@ -57,23 +55,23 @@ void GameSystem::GameLoop()
 					{
 						gameBoard->getSnake()->changeDirection('D');
 					}
-					currentTime = clock() - startTime; //update the game time by minus the start time
-					cout << "\t\tGame Time: " << currentTime/1000 << endl;
-					gameBoard->Update(elapsedTime);
-					isExit = isGameEnd = CheckCollider();
+					cout << "\t\tGame Time: " << gameTime->DeltaTime() << endl;
+					if(gameTime->DeltaTime() >= 1 / 60.0f)
+					{
+						gameBoard->Update(gameTime->DeltaTime());
+					}
 
-					//update game current time;
-					elapsedTime = (clock() - lastUpdateTime) * 1000 / CLOCKS_PER_SEC;
-					lastUpdateTime = clock();
+					isExit = isGameEnd = CheckCollider();
 					cout << "\t\tPress Escape/close button to exit the game." << endl;
 					cout << "\t\tArrow Up key to move up." << endl;
 					cout << "\t\tArrow Down key to move down." << endl;
 					cout << "\t\tArrow Left key to move left." << endl;
 					cout << "\t\tArrow Right key to move right." << endl;
-					Sleep(25);
 					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0,0 });
 				} while (!isGameEnd);
+				system("CLS");
 				cout << "\t\tYou dead" << endl;
+				Sleep(3000);
 			}
 		}
 	}while(!isExit);

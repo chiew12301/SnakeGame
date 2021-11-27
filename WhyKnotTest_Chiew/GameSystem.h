@@ -3,12 +3,13 @@
 
 class Board;
 class Snake;
+class Time;
 
 class GameSystem
 {
 private:
 	Board* gameBoard;
-	//Time gameTime;
+	Time* gameTime;
 
 	bool isExit = false;
 	bool isMainMenuCompleted = false;

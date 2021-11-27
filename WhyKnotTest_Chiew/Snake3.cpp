@@ -4,18 +4,21 @@ Snake3::Snake3(int startXpos, int startYpos, int bWidth, int bHeight) : Snake(st
 {
 	Symbol = '#';
 	speed = 6;
-	updateDelayTimer = 0;
-	updateDelayDuration = 60; // time for next update
 }
 
-void Snake3::Update(int elapsedTime)
+void Snake3::Update(float dt)
 {
-	moveTimer = elapsedTime;
-	updateDelayTimer += elapsedTime;
-	if (updateDelayTimer < updateDelayDuration)
+	if (latestTime == 0)
+	{
+		latestTime = dt;
+	}
+	if (dt >= latestTime + (1 / speed))
+	{
+		UpdateMove(dt);
+		latestTime = dt;
+	}
+	else
 	{
 		return;
 	}
-	updateDelayTimer %= updateDelayDuration;
-	UpdateMove(elapsedTime);
 }

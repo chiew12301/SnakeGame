@@ -4,18 +4,21 @@ Snake2::Snake2(int startXpos, int startYpos, int bWidth, int bHeight) : Snake(st
 {
 	Symbol = 'O';
 	speed = 5;
-	updateDelayTimer = 0;
-	updateDelayDuration = 60; // time for next update
 }
 
-void Snake2::Update(int elapsedTime)
+void Snake2::Update(float dt)
 {
-	moveTimer = elapsedTime;
-	updateDelayTimer += elapsedTime;
-	if (updateDelayTimer < updateDelayDuration)
+	if (latestTime == 0)
+	{
+		latestTime = dt;
+	}
+	if (dt >= latestTime + (1 / speed))
+	{
+		UpdateMove(dt);
+		latestTime = dt;
+	}
+	else
 	{
 		return;
 	}
-	updateDelayTimer %= updateDelayDuration;
-	UpdateMove(elapsedTime);
 }

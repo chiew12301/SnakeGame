@@ -12,22 +12,20 @@ protected:
 	int xPos;
 	int yPos;
 	char Symbol;
-	int speed;
+	float speed;
 	char direction;
 
-	//For Movement
-	int moveTimer;
-	int updateDelayTimer;
-	int updateDelayDuration;
+	//Time
+	float latestTime;
 
 public:
 	Snake(int startXpos, int startYpos, int bWidth, int bHeight);
-	virtual void Update(int elapsedTime);
+	virtual void Update(float dt);
 	char getSnakeSymbol();
 	int getXpos();
 	int getYpos();
 	void changeDirection(char dir);
 	bool collision(int colliderXpos, int colliderYpos);
-	void UpdateMove(int elapsedTime);
+	void UpdateMove(float dt);
 };
 

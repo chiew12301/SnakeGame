@@ -19,7 +19,7 @@ private:
 public:
 	Board(int widthSize, int heightSize);
 
-	void Update(int elapsedTime);
+	void Update(float elapsedTime);
 
 	void setSnakeData(int i);
 
