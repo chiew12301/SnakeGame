@@ -142,25 +142,27 @@
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Food.cpp" />
     <ClCompile Include="Food1.cpp" />
+    <ClCompile Include="Food2.cpp" />
+    <ClCompile Include="Food3.cpp" />
     <ClCompile Include="GameSystem.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="Snake1.cpp" />
     <ClCompile Include="Snake2.cpp" />
     <ClCompile Include="Snake3.cpp" />
-    <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllHeaderFile.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Food.h" />
     <ClInclude Include="Food1.h" />
+    <ClInclude Include="Food2.h" />
+    <ClInclude Include="Food3.h" />
     <ClInclude Include="GameSystem.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="Snake1.h" />
     <ClInclude Include="Snake2.h" />
     <ClInclude Include="Snake3.h" />
-    <ClInclude Include="Time.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

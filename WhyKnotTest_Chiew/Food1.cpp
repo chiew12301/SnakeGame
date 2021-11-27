@@ -7,4 +7,5 @@ Food1::Food1(int startxPos, int startyPos, int bWidth, int bHeight) : Food(start
 
 void Food1::Update()
 {
+	//if there's any feature update could be added
 }

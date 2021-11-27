@@ -11,7 +11,7 @@ void Snake3::Update()
 	switch (direction)
 	{
 	case('W'):
-		if (yPos - speed <= 0)
+		if (yPos - speed < 0)
 		{
 			yPos = boardHeight - (speed - yPos);
 		}
@@ -21,7 +21,7 @@ void Snake3::Update()
 		}
 		break;
 	case('S'):
-		if (yPos + speed >= boardHeight)
+		if (yPos + speed > boardHeight)
 		{
 			yPos = (yPos + speed) - boardHeight;
 		}
@@ -31,7 +31,7 @@ void Snake3::Update()
 		}
 		break;
 	case('A'):
-		if (xPos - speed <= 0)
+		if (xPos - speed < 0)
 		{
 			xPos = boardWidth - (speed - xPos);
 		}
@@ -41,7 +41,7 @@ void Snake3::Update()
 		}
 		break;
 	case('D'):
-		if (xPos + speed >= boardWidth)
+		if (xPos + speed > boardWidth)
 		{
 			xPos = (xPos + speed) - boardWidth;
 		}

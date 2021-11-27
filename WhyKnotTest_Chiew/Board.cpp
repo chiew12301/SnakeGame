@@ -17,17 +17,22 @@ void Board::drawBoard() //perform draw board
 			}
 			else if (FoodList.size() > 0) //when there's food
 			{
+				bool isSpawned = false;
 				for (int k = 0; k < FoodList.size(); k++) //render all food
 				{
 					if (i == FoodList[k]->getYpos() && j == FoodList[k]->getXpos())
 					{
 						cout << FoodList[k]->getFoodSymbol();
-					}
-					else
-					{
-						cout << " "; //Game Platform 
+						isSpawned = true;
+						break;
 					}
 				}
+
+				if (isSpawned == false)
+				{
+					cout << " "; //Game Platform
+				}
+
 			}
 			else //only will enter when there's no food on the board
 			{
@@ -48,6 +53,10 @@ Board::Board(int widthSize, int heightSize)
 	HEIGHT = heightSize;
 	Food* food1 = new Food1(2, 2, widthSize, heightSize);
 	FoodList.push_back(food1);
+	Food* food2 = new Food2(3, 3, widthSize, heightSize);
+	FoodList.push_back(food2);
+	Food* food3 = new Food3(5, 5, widthSize, heightSize);
+	FoodList.push_back(food3);
 }
 
 void Board::Update(double dt) //update all the snake and food and perform draw board with the update
