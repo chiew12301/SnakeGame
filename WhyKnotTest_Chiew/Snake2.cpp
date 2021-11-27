@@ -3,7 +3,7 @@
 Snake2::Snake2(int startXpos, int startYpos, int bWidth, int bHeight) : Snake(startXpos, startYpos, bWidth, bHeight)
 {
 	Symbol = 'O';
-	speed = 1;
+	speed = 5;
 }
 
 void Snake2::Update()

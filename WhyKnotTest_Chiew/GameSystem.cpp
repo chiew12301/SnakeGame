@@ -163,7 +163,7 @@ bool GameSystem::CheckCollider()
 		bool isTrigger = false;
 		for (int i = 0; i < gameBoard->getFoodList().size(); i++) //loop the vector
 		{
-			if (gameBoard->getSnake()->getXpos() == gameBoard->getFoodList()[i]->getXpos() && gameBoard->getSnake()->getYpos() == gameBoard->getFoodList()[i]->getYpos())
+			if (gameBoard->getSnake()->collision(gameBoard->getFoodList()[i]->getXpos() , gameBoard->getFoodList()[i]->getYpos()))
 			{
 				//it means it collided
 				if (gameBoard->getSnake()->getSnakeSymbol() == gameBoard->getFoodList()[i]->getFoodSymbol()) //means same symbol
