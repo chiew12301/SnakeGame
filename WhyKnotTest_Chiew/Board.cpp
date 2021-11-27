@@ -47,7 +47,7 @@ void Board::setSnakeData(int i)
 		snake = new Snake2(WIDTH / 2, HEIGHT / 2, WIDTH, HEIGHT);
 		break;
 	case(3):
-		snake = new Snake2(WIDTH / 2, HEIGHT / 2, WIDTH, HEIGHT);
+		snake = new Snake3(WIDTH / 2, HEIGHT / 2, WIDTH, HEIGHT);
 		break;
 	default:
 		break;

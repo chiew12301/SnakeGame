@@ -8,11 +8,11 @@
 #include "GameSystem.h"
 #include "Board.h"
 #include "Time.h"
-
 //SnakeClass
 #include "Snake.h"
 #include "Snake1.h"
 #include "Snake2.h"
+#include "Snake3.h"
 
 
 using namespace std;
