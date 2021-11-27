@@ -4,51 +4,18 @@ Snake3::Snake3(int startXpos, int startYpos, int bWidth, int bHeight) : Snake(st
 {
 	Symbol = '#';
 	speed = 6;
+	updateDelayTimer = 0;
+	updateDelayDuration = 60; // time for next update
 }
 
-void Snake3::Update()
+void Snake3::Update(int elapsedTime)
 {
-	switch (direction)
+	moveTimer = elapsedTime;
+	updateDelayTimer += elapsedTime;
+	if (updateDelayTimer < updateDelayDuration)
 	{
-	case('W'):
-		if (yPos - speed < 0)
-		{
-			yPos = boardHeight - (speed - yPos);
-		}
-		else
-		{
-			yPos -= speed;
-		}
-		break;
-	case('S'):
-		if (yPos + speed > boardHeight)
-		{
-			yPos = (yPos + speed) - boardHeight;
-		}
-		else
-		{
-			yPos += speed;
-		}
-		break;
-	case('A'):
-		if (xPos - speed < 0)
-		{
-			xPos = boardWidth - (speed - xPos);
-		}
-		else
-		{
-			xPos -= speed;
-		}
-		break;
-	case('D'):
-		if (xPos + speed > boardWidth)
-		{
-			xPos = (xPos + speed) - boardWidth;
-		}
-		else
-		{
-			xPos += speed;
-		}
-		break;
+		return;
 	}
+	updateDelayTimer %= updateDelayDuration;
+	UpdateMove(elapsedTime);
 }

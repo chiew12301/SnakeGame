@@ -59,9 +59,9 @@ Board::Board(int widthSize, int heightSize)
 	FoodList.push_back(food3);
 }
 
-void Board::Update(double dt) //update all the snake and food and perform draw board with the update
+void Board::Update(int elapsedTime) //update all the snake and food and perform draw board with the update
 {
-	snake->Update();
+	snake->Update(elapsedTime);
 	drawBoard();
 }
 

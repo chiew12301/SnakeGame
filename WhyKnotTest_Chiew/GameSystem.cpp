@@ -33,6 +33,7 @@ void GameSystem::GameLoop()
 			{
 				bool isGameEnd = false;
 				startTime = clock();
+				system("CLS");
 				do //player will able play game inside
 				{
 					if (GetAsyncKeyState(VK_ESCAPE))
@@ -70,8 +71,7 @@ void GameSystem::GameLoop()
 					cout << "\t\tArrow Left key to move left." << endl;
 					cout << "\t\tArrow Right key to move right." << endl;
 					Sleep(25);
-					system("CLS");
-					//SetCursorPos
+					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0,0 });
 				} while (!isGameEnd);
 				cout << "\t\tYou dead" << endl;
 			}
