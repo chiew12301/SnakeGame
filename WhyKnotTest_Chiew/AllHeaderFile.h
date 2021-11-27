@@ -3,11 +3,17 @@
 #include <Windows.h>
 #include <stdlib.h>
 #include <time.h>
+#include <vector>
 
 //Below are game file
 #include "GameSystem.h"
 #include "Board.h"
 #include "Time.h"
+
+//FoodClass
+#include "Food.h"
+#include "Food1.h"
+
 //SnakeClass
 #include "Snake.h"
 #include "Snake1.h"

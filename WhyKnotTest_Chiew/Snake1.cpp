@@ -3,7 +3,7 @@
 Snake1::Snake1(int startXpos, int startYpos, int bWidth, int bHeight) : Snake(startXpos, startYpos, bWidth, bHeight)
 {
 	Symbol = '@';
-	speed = 4;
+	speed = 1;
 }
 
 void Snake1::Update()

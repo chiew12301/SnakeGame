@@ -24,6 +24,8 @@ private:
 
 	void resetDefault();
 
+	void CheckCollider();
+
 public:
 	GameSystem();
 

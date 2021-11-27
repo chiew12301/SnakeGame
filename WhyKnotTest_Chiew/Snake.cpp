@@ -36,3 +36,15 @@ void Snake::changeDirection(char dir)
 {
 	direction = dir;
 }
+
+bool Snake::collision(int colliderXpos, int colliderYpos)
+{
+	if (colliderXpos == xPos && colliderYpos == yPos)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}	
+}

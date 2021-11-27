@@ -21,5 +21,6 @@ public:
 	int getXpos();
 	int getYpos();
 	void changeDirection(char dir);
+	bool collision(int colliderXpos, int colliderYpos);
 };
 
