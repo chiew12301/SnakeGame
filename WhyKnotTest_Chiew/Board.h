@@ -12,6 +12,7 @@ private:
 	int m_HEIGHT;
 	//Game Objects
 	Snake* m_snake;
+	std::vector<Snake*> m_SnakeList;
 	std::vector<Food*> m_FoodList;
 	//===========
 	void drawBoard();

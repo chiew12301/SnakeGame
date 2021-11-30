@@ -34,7 +34,7 @@ int Snake::getYpos()
 }
 
 /// <summary>Change Direction is a method that change the snake direction.
-/// <para>'W' as up, 'S' as down, 'A' as left, 'D' as right</para>
+/// <para>'1' as up, '2' as down, '3' as left, '4' as right</para>
 /// </summary>
 void Snake::changeDirection(int dir)
 {
