@@ -11,6 +11,7 @@ class Food
 protected:
 	int m_boardWidth;
 	int m_boardHeight;
+	int m_food_Score;
 	Transform m_transform;
 	char m_Symbol;
 public:
@@ -19,6 +20,7 @@ public:
 	char getFoodSymbol();
 	int getXpos();
 	int getYpos();
-	void Reposition(std::vector<Transform> ListofsnakeBody);
+	int getFoodScore();
+	void Reposition(std::vector<Transform> ListofsnakeBody, std::vector<Food*> ListofFoodTransform);
 };
 

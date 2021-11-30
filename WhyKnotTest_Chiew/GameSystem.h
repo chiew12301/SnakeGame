@@ -24,6 +24,8 @@ private:
 	int m_boardWidth;
 	int m_boardHeight;
 
+	int m_CurrentScore;
+
 	void GameLoop();
 
 	void MainMenu();

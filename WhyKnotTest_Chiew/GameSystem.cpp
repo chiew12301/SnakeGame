@@ -4,6 +4,7 @@ GameSystem::GameSystem()
 {
 	m_gameTime = Time::Instance();
 	m_UIStatus = MapEditUI;
+	m_CurrentScore = 0;
 	GameLoop();
 }
 
@@ -36,10 +37,11 @@ void GameSystem::GameLoop()
 					cout << "\t\tArrow Down key to move down." << endl;
 					cout << "\t\tArrow Left key to move left." << endl;
 					cout << "\t\tArrow Right key to move right." << endl;
+					cout << "\t\tCurrent Score: " << m_CurrentScore << endl;
 			} while (m_UIStatus == InGame);
 		} while (m_UIStatus == SnakeSelection);
 	}while(m_UIStatus == MapEditUI);
-	system("CLS"); cout << "\t\tGame Exited " << endl; cout << "\t\tThank for playing! " << endl; //Exit text
+	system("CLS"); cout << "\t\tGame Exited " << endl; cout << "\t\tYour Final Score: " << m_CurrentScore << endl; cout << "\t\tThank for playing! " << endl; //Exit text
 }
 
 void GameSystem::MainMenu()
@@ -47,7 +49,7 @@ void GameSystem::MainMenu()
 	do
 	{
 		cout << "\t\t\tPlease Key in Board Size" << endl;
-		cout << "\t\tNote: The Board Size must greater than 20" << endl;
+		cout << "\t\tNote: The Board Size must greater than 20 (Suggested 20x20)" << endl;
 		cout << "\t\tWidth of Board:"; cin >> m_boardWidth;
 		if (m_boardWidth >= 20)
 		{
@@ -79,9 +81,9 @@ void GameSystem::SelectSnake()
 	{
 		//this is to select snake prompt
 		cout << "\t\tPlease select your snake" << endl;
-		cout << "\t\tSnake 1: Symbol '@' and speed is 4 speed each block" << endl;
-		cout << "\t\tSnake 2: Symbol 'O' and speed is 5 speed each block" << endl;
-		cout << "\t\tSnake 3: Symbol '#' and speed is 6 speed each block" << endl;
+		cout << "\t\tSnake Air: Symbol '@', score 1 point each and speed is 4 speed each block" << endl;
+		cout << "\t\tSnake Oak: Symbol 'O', score 3 point and speed is 5 speed each block" << endl;
+		cout << "\t\tSnake Hash: Symbol '#', score 5 point and speed is 6 speed each block" << endl;
 		int selection;
 		cout << "Please key in your selection:"; cin >> selection;
 		switch (selection)
@@ -112,6 +114,7 @@ void GameSystem::SelectSnake()
 void GameSystem::resetDefault()
 {
 	m_UIStatus = MapEditUI;
+	m_CurrentScore = 0;
 	m_gameBoard->~Board();
 	m_gameTime->Release();
 }
@@ -129,11 +132,12 @@ bool GameSystem::CheckCollider()
 				//it means it collided
 				if (m_gameBoard->getSnake()->getSnakeSymbol() == m_gameBoard->getFoodList()[i]->getFoodSymbol()) //means same symbol
 				{
-					for (int i = 0; i < m_gameBoard->getFoodList().size(); i++) //loop the vector
+					for (int j = 0; j < m_gameBoard->getFoodList().size(); j++) //loop the vector
 					{
-						m_gameBoard->getFoodList()[i]->Reposition(m_gameBoard->getSnake()->getBody()); //Reposition all teh foods
+						m_gameBoard->getFoodList()[j]->Reposition(m_gameBoard->getSnake()->getBody(), m_gameBoard->getFoodList()); //Reposition all teh foods
 					}
 					m_gameBoard->getSnake()->GrowBody(); //Grow the body
+					m_CurrentScore += m_gameBoard->getFoodList()[i]->getFoodScore(); //increase score
 					break;
 				}
 				else //means different symbol, die and same symbol

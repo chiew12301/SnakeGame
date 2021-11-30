@@ -27,25 +27,40 @@ int Food::getYpos()
 	return m_transform.getYPosition();
 }
 
-void Food::Reposition(std::vector<Transform> ListofsnakeBody)
+int Food::getFoodScore()
+{
+	return m_food_Score;
+}
+
+void Food::Reposition(std::vector<Transform> ListofsnakeBody, std::vector<Food*> ListofFoodTransform)
 {
 	int newXPos, newYPos;
-	bool isSnakeBody = false;
+	bool isCollapse = false;
+	int max_ValueWidth = m_boardWidth - 1;
+	int max_ValueHeight = m_boardHeight - 1;
 	do
 	{
-		isSnakeBody = false;
-		newXPos = rand() % m_boardWidth;
-		newYPos = rand() % m_boardHeight;
+		isCollapse = false;
+		newXPos = 1 + (rand() % max_ValueWidth);
+		newYPos = 1 + (rand() % max_ValueHeight);
 
 		for (int i = 0; i < ListofsnakeBody.size(); i++)
 		{
 			if (newXPos == ListofsnakeBody[i].getXPosition() && newYPos == ListofsnakeBody[i].getYPosition())
 			{
-				isSnakeBody = true;
+				isCollapse = true;
 			}
 		}
 
-	} while ((newXPos == getXpos() && newYPos == getYpos()) || isSnakeBody == true);
+		for (int j = 0; j < ListofFoodTransform.size(); j++)
+		{
+			if (newXPos == ListofFoodTransform[j]->getXpos() && newYPos == ListofFoodTransform[j]->getYpos())
+			{
+				isCollapse = true;
+			}
+		}
+
+	} while ((newXPos == getXpos() && newYPos == getYpos()) || isCollapse == true);
 
 	m_transform.setPosition(newXPos, newYPos);
 }
