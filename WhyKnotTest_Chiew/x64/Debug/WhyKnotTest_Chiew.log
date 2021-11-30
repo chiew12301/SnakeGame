@@ -1,13 +1,2 @@
-﻿  Board.cpp
-  Food1.cpp
-  Food2.cpp
-  Food3.cpp
-  GameSystem.cpp
-  Main.cpp
-D:\Chiew Jia Hong\Assignment\WhyKnotTest\Github\SnakeGame\WhyKnotTest_Chiew\Main.cpp(11,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Snake1.cpp
-  Snake2.cpp
-  Snake3.cpp
-  Time.cpp
-  Generating Code...
+﻿  Snake.cpp
   WhyKnotTest_Chiew.vcxproj -> D:\Chiew Jia Hong\Assignment\WhyKnotTest\Github\SnakeGame\WhyKnotTest_Chiew\x64\Debug\WhyKnotTest_Chiew.exe

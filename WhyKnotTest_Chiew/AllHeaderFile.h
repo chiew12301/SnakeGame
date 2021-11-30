@@ -9,18 +9,19 @@
 #include "GameSystem.h"
 #include "Board.h"
 #include "Time.h"
+#include "Transform.h"
 
 //FoodClass
 #include "Food.h"
-#include "Food1.h"
-#include "Food2.h"
-#include "Food3.h"
+#include "Air.h"
+#include "Oak.h"
+#include "Hash.h"
 
 //SnakeClass
 #include "Snake.h"
-#include "Snake1.h"
-#include "Snake2.h"
-#include "Snake3.h"
+#include "AirSnake.h"
+#include "OakSnake.h"
+#include "HashSnake.h"
 
 
 using namespace std;

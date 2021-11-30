@@ -11,5 +11,7 @@ int main()
 	srand(time(NULL));
 	GameSystem* gs = new GameSystem();
 
+	delete gs; //free the memory
+
 	return 0;
 }

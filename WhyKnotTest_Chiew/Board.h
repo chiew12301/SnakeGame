@@ -8,18 +8,20 @@ class Food;
 class Board
 {
 private:
-	int WIDTH;
-	int HEIGHT;
+	int m_WIDTH;
+	int m_HEIGHT;
 	//Game Objects
-	Snake* snake;
-	std::vector<Food*> FoodList;
+	Snake* m_snake;
+	std::vector<Food*> m_FoodList;
 	//===========
 	void drawBoard();
 
 public:
 	Board(int widthSize, int heightSize);
 
-	void Update(float elapsedTime);
+	~Board();
+
+	void Update(float dt);
 
 	void setSnakeData(int i);
 

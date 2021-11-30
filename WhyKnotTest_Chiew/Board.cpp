@@ -2,41 +2,46 @@
 
 void Board::drawBoard() //perform draw board
 {
-	for (int i = 0; i <= HEIGHT + 1; i++)
+	for (int i = 0; i <= m_HEIGHT + 1; i++)
 	{
 		cout << "\t\t|";
-		for (int j = 0; j < WIDTH; j++)
+		for (int j = 0; j < m_WIDTH; j++)
 		{
-			if (i == 0 || i == HEIGHT + 1)
+			if (i == 0 || i == m_HEIGHT + 1) //Top and Bottom wall
 			{
 				cout << "-";
 			}
-			else if (i == snake->getYpos() && j == snake->getXpos())
+			else //Render Game Platform
 			{
-				cout << snake->getSnakeSymbol();
-			}
-			else if (FoodList.size() > 0) //when there's food
-			{
-				bool isSpawned = false;
-				for (int k = 0; k < FoodList.size(); k++) //render all food
+				bool isBodyPart = false;
+				for (int k = 0; k < m_snake->getBody().size(); k++) //Check Body
 				{
-					if (i == FoodList[k]->getYpos() && j == FoodList[k]->getXpos())
+					if (i == m_snake->getBody()[k].getYPosition() && j == m_snake->getBody()[k].getXPosition())
 					{
-						cout << FoodList[k]->getFoodSymbol();
-						isSpawned = true;
+						cout << m_snake->getSnakeSymbol();
+						isBodyPart = true;
 						break;
 					}
 				}
 
-				if (isSpawned == false)
+				if (isBodyPart == false) //if this is not body part, check food
 				{
-					cout << " "; //Game Platform
-				}
+					bool isFoodSpawned = false;
+					for (int l = 0; l < m_FoodList.size(); l++) //Check Food
+					{
+						if (i == m_FoodList[l]->getYpos() && j == m_FoodList[l]->getXpos())
+						{
+							cout << m_FoodList[l]->getFoodSymbol();
+							isFoodSpawned = true;
+							break;
+						}
+					}
 
-			}
-			else //only will enter when there's no food on the board
-			{
-				cout << " "; //Game Platform			
+					if (isFoodSpawned == false) //if this is not food part too, then is a blank game platform
+					{
+						cout << " "; //Game Platform
+					}
+				}
 			}
 		}
 		cout << "|" << endl;
@@ -49,19 +54,29 @@ void Board::drawBoard() //perform draw board
 /// </summary>
 Board::Board(int widthSize, int heightSize)
 {
-	WIDTH = widthSize;
-	HEIGHT = heightSize;
-	Food* food1 = new Food1(2, 2, widthSize, heightSize);
-	FoodList.push_back(food1);
-	Food* food2 = new Food2(3, 3, widthSize, heightSize);
-	FoodList.push_back(food2);
-	Food* food3 = new Food3(5, 5, widthSize, heightSize);
-	FoodList.push_back(food3);
+	m_WIDTH = widthSize;
+	m_HEIGHT = heightSize;
+	Food* food1 = new Air(2, 2, widthSize, heightSize);
+	m_FoodList.push_back(food1);
+	Food* food2 = new Oak(3, 3, widthSize, heightSize);
+	m_FoodList.push_back(food2);
+	Food* food3 = new Hash(5, 5, widthSize, heightSize);
+	m_FoodList.push_back(food3);
 }
 
-void Board::Update(float elapsedTime) //update all the snake and food and perform draw board with the update
+Board::~Board()
 {
-	snake->Update(elapsedTime);
+	delete m_snake;
+	for (auto p : m_FoodList)
+	{
+		delete p;
+	}
+	m_FoodList.clear(); //free memories
+}
+
+void Board::Update(float dt) //update all the snake and food and perform draw board with the update
+{
+	m_snake->Update(dt);
 	drawBoard();
 }
 
@@ -73,13 +88,13 @@ void Board::setSnakeData(int i)
 	switch (i)
 	{
 	case(1):
-		snake = new Snake1(WIDTH / 2, HEIGHT / 2, WIDTH, HEIGHT);
+		m_snake = new AirSnake(m_WIDTH / 2, m_HEIGHT / 2, m_WIDTH, m_HEIGHT);
 		break;
 	case(2):
-		snake = new Snake2(WIDTH / 2, HEIGHT / 2, WIDTH, HEIGHT);
+		m_snake = new OakSnake(m_WIDTH / 2, m_HEIGHT / 2, m_WIDTH, m_HEIGHT);
 		break;
 	case(3):
-		snake = new Snake3(WIDTH / 2, HEIGHT / 2, WIDTH, HEIGHT);
+		m_snake = new HashSnake(m_WIDTH / 2, m_HEIGHT / 2, m_WIDTH, m_HEIGHT);
 		break;
 	default:
 		break;
@@ -88,10 +103,10 @@ void Board::setSnakeData(int i)
 
 Snake* Board::getSnake()
 {
-	return snake;
+	return m_snake;
 }
 
 std::vector<Food*>& Board::getFoodList()
 {
-	return FoodList;
+	return m_FoodList;
 }

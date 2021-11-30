@@ -2,10 +2,9 @@
 
 Food::Food(int startxPos, int startyPos, int bWidth, int bHeight)
 {
-	xPos = startxPos;
-	yPos = startyPos;
-	boardWidth = bWidth;
-	boardHeight = bHeight;
+	m_transform.setPosition(startxPos, startyPos);
+	m_boardWidth = bWidth;
+	m_boardHeight = bHeight;
 }
 
 void Food::Update()
@@ -15,32 +14,38 @@ void Food::Update()
 
 char Food::getFoodSymbol()
 {
-	return Symbol;
+	return m_Symbol;
 }
 
 int Food::getXpos()
 {
-	return xPos;
+	return m_transform.getXPosition();
 }
 
 int Food::getYpos()
 {
-	return yPos;
+	return m_transform.getYPosition();
 }
 
-void Food::Reposition()
+void Food::Reposition(std::vector<Transform> ListofsnakeBody)
 {
-	randomizePosition:
-	int newXPos = rand() % boardWidth;
-	int newYPos = rand() % boardHeight;
-
-	if (newXPos == xPos && newYPos == yPos)
-	{ //reposition coz is the same
-		goto randomizePosition;
-	}
-	else
+	int newXPos, newYPos;
+	bool isSnakeBody = false;
+	do
 	{
-		xPos = newXPos;
-		yPos = newYPos;
-	}
+		isSnakeBody = false;
+		newXPos = rand() % m_boardWidth;
+		newYPos = rand() % m_boardHeight;
+
+		for (int i = 0; i < ListofsnakeBody.size(); i++)
+		{
+			if (newXPos == ListofsnakeBody[i].getXPosition() && newYPos == ListofsnakeBody[i].getYPosition())
+			{
+				isSnakeBody = true;
+			}
+		}
+
+	} while ((newXPos == getXpos() && newYPos == getYpos()) || isSnakeBody == true);
+
+	m_transform.setPosition(newXPos, newYPos);
 }
