@@ -2,15 +2,14 @@
 
 Snake::Snake(int startXpos, int startYpos, int bWidth, int bHeight)
 {
-	m_Transform.setPosition(startXpos, startYpos);
-	m_boardWidth = bWidth;
-	m_boardHeight = bHeight;
-	m_CurrentBodySize = 1;
-	m_MaxBodySize = 10;
-	m_direction = 2;
-	m_latestTime = 0.0f;
+	this->m_Transform.setPosition(startXpos, startYpos);
+	this->m_boardWidth = bWidth;
+	this->m_boardHeight = bHeight;
+	this->m_CurrentBodySize = 1;
+	this->m_direction = UP;
+	this->m_latestTime = 0.0f;
 
-	m_bodyTransform.push_back(m_Transform);
+	this->m_bodyTransform.push_back(m_Transform);
 }
 
 void Snake::Update(float dt)
@@ -20,45 +19,51 @@ void Snake::Update(float dt)
 
 char Snake::getSnakeSymbol()
 {
-	return m_Symbol;
+	return this->m_Symbol;
 }
 
 int Snake::getXpos()
 {
-	return m_Transform.getXPosition();
+	return this->m_Transform.getXPosition();
 }
 
 int Snake::getYpos()
 {
-	return m_Transform.getYPosition();
+	return this->m_Transform.getYPosition();
 }
 
 /// <summary>Change Direction is a method that change the snake direction.
-/// <para>'1' as up, '2' as down, '3' as left, '4' as right</para>
+/// <para>'0' as up, '1' as down, '2' as left, '3' as right</para>
 /// </summary>
-void Snake::changeDirection(int dir)
+void Snake::changeDirection(DIRECTION dir)
 {
-	m_direction = dir;
+	this->m_direction = dir;
 }
 
 void Snake::GrowBody()
 {//add body into the vector list
-	if (m_CurrentBodySize < m_MaxBodySize)
-	{
-		m_CurrentBodySize++;
-	}
+	this->m_CurrentBodySize++;
 }
 
 std::vector<Transform> Snake::getBody()
 {
-	return m_bodyTransform;
+	return this->m_bodyTransform;
 }
 
-bool Snake::collision(int colliderXpos, int colliderYpos)
+/// <summary>Collider is a method check object on the body, beaware the methods checked whole body.
+/// <para>'colliderXpos' is other object of the x position, 'colliderYpos' is other object of the y position, 
+/// 'isSelf' set true if is snake object set false if is not</para>
+/// </summary>
+bool Snake::collision(int colliderXpos, int colliderYpos, bool isSelf)
 {
-	for (int i = 0; i < m_bodyTransform.size(); i++)
+	int i = 0;
+	if (isSelf == true)
 	{
-		if (colliderXpos == m_bodyTransform[i].getXPosition() && colliderYpos == m_bodyTransform[i].getYPosition())
+		i = 1;
+	}
+	for (i; i < this->m_bodyTransform.size(); i++)
+	{
+		if (colliderXpos == this->m_bodyTransform[i].getXPosition() && colliderYpos == this->m_bodyTransform[i].getYPosition())
 		{
 			return true;
 		}
@@ -68,53 +73,53 @@ bool Snake::collision(int colliderXpos, int colliderYpos)
 
 void Snake::UpdateMove(float dt)
 {
-	switch (m_direction)
+	switch (this->m_direction)
 	{
-	case(1):
-		if (m_Transform.getYPosition() - 1 <= 0)
+	case(0):
+		if (this->m_Transform.getYPosition() - 1 <= 0)
 		{
-			m_Transform.setPosition(m_Transform.getXPosition(), m_boardHeight - (1 - m_Transform.getYPosition()));
+			this->m_Transform.setPosition(this->m_Transform.getXPosition(), this->m_boardHeight - (1 - this->m_Transform.getYPosition()));
 		}
 		else
 		{
-			m_Transform.setPosition(m_Transform.getXPosition(), m_Transform.getYPosition() - 1);
+			this->m_Transform.setPosition(this->m_Transform.getXPosition(), this->m_Transform.getYPosition() - 1);
+		}
+		break;
+	case(1):
+		if (this->m_Transform.getYPosition() + 1 > this->m_boardHeight)
+		{
+			this->m_Transform.setPosition(this->m_Transform.getXPosition(), (this->m_Transform.getYPosition()) - this->m_boardHeight);
+		}
+		else
+		{
+			this->m_Transform.setPosition(this->m_Transform.getXPosition(), this->m_Transform.getYPosition() + 1);
 		}
 		break;
 	case(2):
-		if (m_Transform.getYPosition() + 1 > m_boardHeight)
+		if (this->m_Transform.getXPosition() - 1 < 0)
 		{
-			m_Transform.setPosition(m_Transform.getXPosition(), (m_Transform.getYPosition()) - m_boardHeight);
+			this->m_Transform.setPosition(this->m_boardWidth - (1 - this->m_Transform.getXPosition()), this->m_Transform.getYPosition());
 		}
 		else
 		{
-			m_Transform.setPosition(m_Transform.getXPosition(), m_Transform.getYPosition() + 1);
+			this->m_Transform.setPosition(this->m_Transform.getXPosition() - 1, this->m_Transform.getYPosition());
 		}
 		break;
 	case(3):
-		if (m_Transform.getXPosition() - 1 < 0)
+		if (this->m_Transform.getXPosition() + 1 >= this->m_boardWidth)
 		{
-			m_Transform.setPosition(m_boardWidth - (1 - m_Transform.getXPosition()), m_Transform.getYPosition());
+			this->m_Transform.setPosition((this->m_Transform.getXPosition() + 1) - this->m_boardWidth, this->m_Transform.getYPosition());
 		}
 		else
 		{
-			m_Transform.setPosition(m_Transform.getXPosition() - 1, m_Transform.getYPosition());
-		}
-		break;
-	case(4):
-		if (m_Transform.getXPosition() + 1 >= m_boardWidth)
-		{
-			m_Transform.setPosition((m_Transform.getXPosition() + 1) - m_boardWidth, m_Transform.getYPosition());
-		}
-		else
-		{
-			m_Transform.setPosition(m_Transform.getXPosition() + 1, m_Transform.getYPosition());
+			this->m_Transform.setPosition(this->m_Transform.getXPosition() + 1, this->m_Transform.getYPosition());
 		}
 		break;
 	}
 
-	m_bodyTransform.push_back(m_Transform);
-	if (m_bodyTransform.size() > m_CurrentBodySize)
+	this->m_bodyTransform.push_back(this->m_Transform);
+	if (this->m_bodyTransform.size() > this->m_CurrentBodySize)
 	{
-		m_bodyTransform.erase(m_bodyTransform.begin());
+		this->m_bodyTransform.erase(this->m_bodyTransform.begin());
 	}
 }

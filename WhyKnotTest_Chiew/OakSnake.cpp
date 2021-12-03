@@ -2,20 +2,20 @@
 
 OakSnake::OakSnake(int startXpos, int startYpos, int bWidth, int bHeight) : Snake(startXpos, startYpos, bWidth, bHeight)
 {
-	m_Symbol = 'O';
-	m_speed = 5;
+	this->m_Symbol = 'O';
+	this->m_speed = 5;
 }
 
 void OakSnake::Update(float dt)
 {
-	if (m_latestTime == 0)
+	if (this->m_latestTime == 0)
 	{
-		m_latestTime = dt;
+		this->m_latestTime = dt;
 	}
-	if (dt >= m_latestTime + (1 / m_speed))
+	if (dt >= this->m_latestTime + (1 / this->m_speed))
 	{
 		UpdateMove(dt);
-		m_latestTime = dt;
+		this->m_latestTime = dt;
 	}
 	else
 	{

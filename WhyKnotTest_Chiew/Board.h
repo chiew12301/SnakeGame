@@ -4,6 +4,7 @@
 //Tell Board class there's these classes first before define
 class Snake;
 class Food;
+class ObjectCreation;
 
 class Board
 {
@@ -12,8 +13,7 @@ private:
 	int m_HEIGHT;
 	//Game Objects
 	Snake* m_snake;
-	std::vector<Snake*> m_SnakeList;
-	std::vector<Food*> m_FoodList;
+	ObjectCreation* m_objCreator;
 	//===========
 	void drawBoard();
 

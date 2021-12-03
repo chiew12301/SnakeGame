@@ -13,87 +13,117 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Foods">
+      <UniqueIdentifier>{35b2e7ba-9ff2-4d29-b2c2-d88d8cd84d43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Snakes">
+      <UniqueIdentifier>{34d84a0b-a4ba-46d7-ba21-c681726b9b6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Foods">
+      <UniqueIdentifier>{c61c9075-a22b-4abf-9dca-2d556be02687}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Snakes">
+      <UniqueIdentifier>{1983291b-1959-46d1-832a-96002d8dd589}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Element">
+      <UniqueIdentifier>{51848d1f-f972-4501-9d7c-340162e9fce8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System">
+      <UniqueIdentifier>{3b0736de-f2de-4780-83c9-4a9411e97ec4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Element">
+      <UniqueIdentifier>{69758a29-6f4d-42bb-8b11-06121cdea26f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System">
+      <UniqueIdentifier>{4ec1e282-3bcd-4125-b3f2-df4f8ef99390}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Board.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Snake.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Food.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Time.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Foods</Filter>
     </ClCompile>
     <ClCompile Include="AirSnake.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OakSnake.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Snakes</Filter>
     </ClCompile>
     <ClCompile Include="HashSnake.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Snakes</Filter>
     </ClCompile>
-    <ClCompile Include="Air.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="OakSnake.cpp">
+      <Filter>Source Files\Snakes</Filter>
     </ClCompile>
-    <ClCompile Include="Oak.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Snake.cpp">
+      <Filter>Source Files\Snakes</Filter>
     </ClCompile>
-    <ClCompile Include="Hash.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Time.cpp">
+      <Filter>Source Files\Element</Filter>
     </ClCompile>
     <ClCompile Include="Transform.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSystem.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="AirFood.cpp">
+      <Filter>Source Files\Foods</Filter>
+    </ClCompile>
+    <ClCompile Include="HashFood.cpp">
+      <Filter>Source Files\Foods</Filter>
+    </ClCompile>
+    <ClCompile Include="OakFood.cpp">
+      <Filter>Source Files\Foods</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectCreation.cpp">
+      <Filter>Source Files\System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Board.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AllHeaderFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Snake.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Food.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Time.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Foods</Filter>
     </ClInclude>
     <ClInclude Include="AirSnake.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OakSnake.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Snakes</Filter>
     </ClInclude>
     <ClInclude Include="HashSnake.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Snakes</Filter>
     </ClInclude>
-    <ClInclude Include="Air.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="OakSnake.h">
+      <Filter>Header Files\Snakes</Filter>
     </ClInclude>
-    <ClInclude Include="Oak.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Snake.h">
+      <Filter>Header Files\Snakes</Filter>
     </ClInclude>
-    <ClInclude Include="Hash.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Time.h">
+      <Filter>Header Files\Element</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Element</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSystem.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="AirFood.h">
+      <Filter>Header Files\Foods</Filter>
+    </ClInclude>
+    <ClInclude Include="HashFood.h">
+      <Filter>Header Files\Foods</Filter>
+    </ClInclude>
+    <ClInclude Include="OakFood.h">
+      <Filter>Header Files\Foods</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectCreation.h">
+      <Filter>Header Files\System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

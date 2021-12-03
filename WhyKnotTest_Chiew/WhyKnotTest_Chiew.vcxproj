@@ -141,11 +141,12 @@
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Food.cpp" />
-    <ClCompile Include="Air.cpp" />
-    <ClCompile Include="Oak.cpp" />
-    <ClCompile Include="Hash.cpp" />
+    <ClCompile Include="AirFood.cpp" />
+    <ClCompile Include="OakFood.cpp" />
+    <ClCompile Include="HashFood.cpp" />
     <ClCompile Include="GameSystem.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ObjectCreation.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="AirSnake.cpp" />
     <ClCompile Include="OakSnake.cpp" />
@@ -157,10 +158,11 @@
     <ClInclude Include="AllHeaderFile.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Food.h" />
-    <ClInclude Include="Air.h" />
-    <ClInclude Include="Oak.h" />
-    <ClInclude Include="Hash.h" />
+    <ClInclude Include="AirFood.h" />
+    <ClInclude Include="OakFood.h" />
+    <ClInclude Include="HashFood.h" />
     <ClInclude Include="GameSystem.h" />
+    <ClInclude Include="ObjectCreation.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="AirSnake.h" />
     <ClInclude Include="OakSnake.h" />

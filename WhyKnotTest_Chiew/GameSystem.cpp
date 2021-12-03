@@ -2,9 +2,9 @@
 
 GameSystem::GameSystem()
 {
-	m_gameTime = Time::Instance();
-	m_UIStatus = MapEditUI;
-	m_CurrentScore = 0;
+	this->m_gameTime = Time::Instance();
+	this->m_UIStatus = MapEditUI;
+	this->m_CurrentScore = 0;
 	GameLoop();
 }
 
@@ -22,26 +22,29 @@ void GameSystem::GameLoop()
 		do
 		{
 			SelectSnake();
-			m_gameTime->Reset();
+			this->m_gameTime->Reset();
 			do
 			{
-					m_gameTime->Tick();
+				this->m_gameTime->Tick();
 					CheckInput();
-					cout << "\t\tGame Time: " << m_gameTime->DeltaTime() << endl;
-					if (m_gameTime->DeltaTime() >= 1 / 60.0f){ m_gameBoard->Update(m_gameTime->DeltaTime());} //Update,Render the Game
-
-					if (CheckCollider() == true) { m_UIStatus = ExitGame; 	system("CLS");cout << "\t\tYou dead" << endl;Sleep(3000);} //Condition Checking
+					cout << "\t\tGame Time: " << this->m_gameTime->DeltaTime() << endl;
+					if (m_gameTime->DeltaTime() >= 1 / 60.0f){ this->m_gameBoard->Update(this->m_gameTime->DeltaTime());} //Update,Render the Game
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); //white
+					if (CheckCollider() == true) { this->m_UIStatus = MapEditUI; 	system("CLS");cout << "\t\tYou dead" << endl; 
+						cout << "\t\tYour Final Score: " << this->m_CurrentScore << endl; Sleep(3000);} //Condition Checking
 					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0,0 });
 					cout << "\t\tPress Escape/close button to exit the game." << endl;
 					cout << "\t\tArrow Up key to move up." << endl;
 					cout << "\t\tArrow Down key to move down." << endl;
 					cout << "\t\tArrow Left key to move left." << endl;
 					cout << "\t\tArrow Right key to move right." << endl;
-					cout << "\t\tCurrent Score: " << m_CurrentScore << endl;
-			} while (m_UIStatus == InGame);
-		} while (m_UIStatus == SnakeSelection);
-	}while(m_UIStatus == MapEditUI);
-	system("CLS"); cout << "\t\tGame Exited " << endl; cout << "\t\tYour Final Score: " << m_CurrentScore << endl; cout << "\t\tThank for playing! " << endl; //Exit text
+					cout << "\t\tCurrent Score: " << this->m_CurrentScore << endl;
+			} while (this->m_UIStatus == InGame);
+		} while (this->m_UIStatus == SnakeSelection);
+		system("CLS");
+		this->m_CurrentScore = 0; //reset score
+	}while(this->m_UIStatus == MapEditUI);
+	system("CLS"); cout << "\t\tGame Exited " << endl; cout << "\t\tThank for playing! " << endl; //Exit text
 }
 
 void GameSystem::MainMenu()
@@ -86,26 +89,26 @@ void GameSystem::SelectSnake()
 		cout << "\t\tSnake Hash: Symbol '#', score 5 point and speed is 6 speed each block" << endl;
 		int selection;
 		cout << "Please key in your selection:"; cin >> selection;
-		switch (selection)
+		switch (selection) //Reason of this is to check which snake and gurantee is within the range
 		{
 		case(1):
-			m_gameBoard->setSnakeData(1);
-			m_UIStatus = InGame;
+			this->m_gameBoard->setSnakeData(1);
+			this->m_UIStatus = InGame;
 			break;
 		case(2):
-			m_gameBoard->setSnakeData(2);
-			m_UIStatus = InGame;
+			this->m_gameBoard->setSnakeData(2);
+			this->m_UIStatus = InGame;
 			break;
 		case(3):
-			m_gameBoard->setSnakeData(3);
-			m_UIStatus = InGame;
+			this->m_gameBoard->setSnakeData(3);
+			this->m_UIStatus = InGame;
 			break;
 		default:
 			system("CLS");
 			cout << "\t\tInvalid Input" << endl;
 			break;
 		}
-	} while (m_UIStatus == SnakeSelection);
+	} while (this->m_UIStatus == SnakeSelection);
 	system("CLS");
 }
 
@@ -113,31 +116,31 @@ void GameSystem::SelectSnake()
 /// </summary>
 void GameSystem::resetDefault()
 {
-	m_UIStatus = MapEditUI;
-	m_CurrentScore = 0;
-	m_gameBoard->~Board();
-	m_gameTime->Release();
+	this->m_UIStatus = MapEditUI;
+	this->m_CurrentScore = 0;
+	this->m_gameBoard->~Board();
+	this->m_gameTime->Release();
 }
 
 /// <summary>This is a method to check every collider in the system, it meant to place in loop. It will take all objects data from board data.
 /// </summary>
 bool GameSystem::CheckCollider()
 {
-	if (m_gameBoard->getFoodList().size()> 0) //check only when it has foods
+	if (this->m_gameBoard->getFoodList().size()> 0) //check only when it has foods
 	{
-		for (int i = 0; i < m_gameBoard->getFoodList().size(); i++) //loop the vector
+		for (int i = 0; i < this->m_gameBoard->getFoodList().size(); i++) //loop the vector
 		{
-			if (m_gameBoard->getSnake()->collision(m_gameBoard->getFoodList()[i]->getXpos() , m_gameBoard->getFoodList()[i]->getYpos()))
+			if (this->m_gameBoard->getSnake()->collision(this->m_gameBoard->getFoodList()[i]->getXpos() , this->m_gameBoard->getFoodList()[i]->getYpos(), false))
 			{
 				//it means it collided
-				if (m_gameBoard->getSnake()->getSnakeSymbol() == m_gameBoard->getFoodList()[i]->getFoodSymbol()) //means same symbol
+				if (this->m_gameBoard->getSnake()->getSnakeSymbol() == this->m_gameBoard->getFoodList()[i]->getFoodSymbol()) //means same symbol
 				{
-					for (int j = 0; j < m_gameBoard->getFoodList().size(); j++) //loop the vector
+					for (int j = 0; j < this->m_gameBoard->getFoodList().size(); j++) //loop the vector
 					{
-						m_gameBoard->getFoodList()[j]->Reposition(m_gameBoard->getSnake()->getBody(), m_gameBoard->getFoodList()); //Reposition all teh foods
+						this->m_gameBoard->getFoodList()[j]->Reposition(this->m_gameBoard->getSnake()->getBody(), this->m_gameBoard->getFoodList()); //Reposition all teh foods
 					}
-					m_gameBoard->getSnake()->GrowBody(); //Grow the body
-					m_CurrentScore += m_gameBoard->getFoodList()[i]->getFoodScore(); //increase score
+					this->m_gameBoard->getSnake()->GrowBody(); //Grow the body
+					this->m_CurrentScore += this->m_gameBoard->getFoodList()[i]->getFoodScore(); //increase score
 					break;
 				}
 				else //means different symbol, die and same symbol
@@ -147,6 +150,12 @@ bool GameSystem::CheckCollider()
 			}
 		}
 	}
+
+	if (this->m_gameBoard->getSnake()->collision(this->m_gameBoard->getSnake()->getBody()[0].getXPosition(), this->m_gameBoard->getSnake()->getBody()[0].getYPosition(), true))
+	{
+		return true;
+	}
+
 	return false; //only triggered when is collided with food.
 }
 
@@ -154,23 +163,23 @@ void GameSystem::CheckInput()
 {
 	if (GetAsyncKeyState(VK_ESCAPE))
 	{
-		m_UIStatus = ExitGame;
+		this->m_UIStatus = ExitGame;
 	}
 	else if (GetAsyncKeyState(VK_UP))
 	{
-		m_gameBoard->getSnake()->changeDirection(1);
+		this->m_gameBoard->getSnake()->changeDirection(this->m_gameBoard->getSnake()->UP);
 	}
 	else if (GetAsyncKeyState(VK_DOWN))
 	{
-		m_gameBoard->getSnake()->changeDirection(2);
+		this->m_gameBoard->getSnake()->changeDirection(this->m_gameBoard->getSnake()->DOWN);
 	}
 	else if (GetAsyncKeyState(VK_LEFT))
 	{
-		m_gameBoard->getSnake()->changeDirection(3);
+		this->m_gameBoard->getSnake()->changeDirection(this->m_gameBoard->getSnake()->LEFT);
 	}
 	else if (GetAsyncKeyState(VK_RIGHT))
 	{
-		m_gameBoard->getSnake()->changeDirection(4);
+		this->m_gameBoard->getSnake()->changeDirection(this->m_gameBoard->getSnake()->RIGHT);
 	}
 }
 

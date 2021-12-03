@@ -10,7 +10,7 @@ int main()
 
 	srand(time(NULL));
 	GameSystem* gs = new GameSystem();
-
+	gs->~GameSystem(); //destruct other memories
 	delete gs; //free the memory
 
 	return 0;

@@ -2,23 +2,26 @@
 
 void Board::drawBoard() //perform draw board
 {
-	for (int i = 0; i <= m_HEIGHT + 1; i++)
+	for (int i = 0; i <= this->m_HEIGHT + 1; i++)
 	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4); //red
 		cout << "\t\t|";
-		for (int j = 0; j < m_WIDTH; j++)
+		for (int j = 0; j < this->m_WIDTH; j++)
 		{
-			if (i == 0 || i == m_HEIGHT + 1) //Top and Bottom wall
+			if (i == 0 || i == this->m_HEIGHT + 1) //Top and Bottom wall
 			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4); //red
 				cout << "-";
 			}
 			else //Render Game Platform
 			{
 				bool isBodyPart = false;
-				for (int k = 0; k < m_snake->getBody().size(); k++) //Check Body
+				for (int k = 0; k < this->m_snake->getBody().size(); k++) //Check Body
 				{
-					if (i == m_snake->getBody()[k].getYPosition() && j == m_snake->getBody()[k].getXPosition())
+					if (i == this->m_snake->getBody()[k].getYPosition() && j == this->m_snake->getBody()[k].getXPosition())
 					{
-						cout << m_snake->getSnakeSymbol();
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 1); //blue
+						cout << this->m_snake->getSnakeSymbol();
 						isBodyPart = true;
 						break;
 					}
@@ -27,11 +30,12 @@ void Board::drawBoard() //perform draw board
 				if (isBodyPart == false) //if this is not body part, check food
 				{
 					bool isFoodSpawned = false;
-					for (int l = 0; l < m_FoodList.size(); l++) //Check Food
+					for (int l = 0; l < this->m_objCreator->getFoodObjectsList().size(); l++) //Check Food
 					{
-						if (i == m_FoodList[l]->getYpos() && j == m_FoodList[l]->getXpos())
+						if (i == this->m_objCreator->getFoodObjectsList()[l]->getYpos() && j == this->m_objCreator->getFoodObjectsList()[l]->getXpos())
 						{
-							cout << m_FoodList[l]->getFoodSymbol();
+							SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10); //bright green
+							cout << this->m_objCreator->getFoodObjectsList()[l]->getFoodSymbol();
 							isFoodSpawned = true;
 							break;
 						}
@@ -39,11 +43,13 @@ void Board::drawBoard() //perform draw board
 
 					if (isFoodSpawned == false) //if this is not food part too, then is a blank game platform
 					{
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); //white
 						cout << " "; //Game Platform
 					}
 				}
 			}
 		}
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4); //red
 		cout << "|" << endl;
 	}
 }
@@ -54,40 +60,21 @@ void Board::drawBoard() //perform draw board
 /// </summary>
 Board::Board(int widthSize, int heightSize)
 {
-	m_WIDTH = widthSize;
-	m_HEIGHT = heightSize;
-	Food* food1 = new Air(2, 2, widthSize, heightSize);
-	m_FoodList.push_back(food1);
-	Food* food2 = new Oak(3, 3, widthSize, heightSize);
-	m_FoodList.push_back(food2);
-	Food* food3 = new Hash(5, 5, widthSize, heightSize);
-	m_FoodList.push_back(food3);
-	Snake* snakeAir = new AirSnake(m_WIDTH / 2, m_HEIGHT / 2, m_WIDTH, m_HEIGHT);
-	m_SnakeList.push_back(snakeAir);
-	Snake* snakeOak = new OakSnake(m_WIDTH / 2, m_HEIGHT / 2, m_WIDTH, m_HEIGHT);
-	m_SnakeList.push_back(snakeOak);
-	Snake* snakeHash = new HashSnake(m_WIDTH / 2, m_HEIGHT / 2, m_WIDTH, m_HEIGHT);
-	m_SnakeList.push_back(snakeHash);
+	this->m_WIDTH = widthSize;
+	this->m_HEIGHT = heightSize;
+	m_objCreator = new ObjectCreation(widthSize, heightSize);
 }
 
 Board::~Board()
 {
-	delete m_snake;
-	for (auto p : m_FoodList)
-	{
-		delete p;
-	}
-	m_FoodList.clear(); //free memories
-	for (auto p : m_SnakeList)
-	{
-		delete p;
-	}
-	m_SnakeList.clear(); //free memories
+	m_objCreator->~ObjectCreation();
+	this->m_snake = NULL;
+	delete this->m_snake;
 }
 
 void Board::Update(float dt) //update all the snake and food and perform draw board with the update
 {
-	m_snake->Update(dt);
+	this->m_snake->Update(dt);
 	drawBoard();
 }
 
@@ -96,28 +83,15 @@ void Board::Update(float dt) //update all the snake and food and perform draw bo
 /// </summary>
 void Board::setSnakeData(int i)
 {
-	switch (i)
-	{
-	case(1):
-		m_snake = m_SnakeList[i - 1];
-		break;
-	case(2):
-		m_snake = m_SnakeList[i - 1];
-		break;
-	case(3):
-		m_snake = m_SnakeList[i - 1];
-		break;
-	default:
-		break;
-	}
+	this->m_snake = this->m_objCreator->getSnakesObjectsList()[i - 1];
 }
 
 Snake* Board::getSnake()
 {
-	return m_snake;
+	return this->m_snake;
 }
 
 std::vector<Food*>& Board::getFoodList()
 {
-	return m_FoodList;
+	return this->m_objCreator->getFoodObjectsList();
 }

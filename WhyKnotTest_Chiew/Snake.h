@@ -8,16 +8,24 @@
 
 class Snake
 {
+public:
+	enum DIRECTION
+	{
+		UP = 0,
+		DOWN,
+		LEFT,
+		RIGHT
+	};
 protected:
+
 	int m_boardWidth;
 	int m_boardHeight;
 	int m_CurrentBodySize;
-	int m_MaxBodySize;
 	std::vector<Transform> m_bodyTransform;
-	Transform m_Transform;
+	Transform m_Transform; //Basically act as head of the transform
 	char m_Symbol;
 	float m_speed;
-	int m_direction;
+	DIRECTION m_direction;
 
 	//Time
 	float m_latestTime;
@@ -28,10 +36,10 @@ public:
 	char getSnakeSymbol();
 	int getXpos();
 	int getYpos();
-	void changeDirection(int dir);
+	void changeDirection(DIRECTION dir);
 	void GrowBody();
 	std::vector<Transform> getBody();
-	bool collision(int colliderXpos, int colliderYpos);
+	bool collision(int colliderXpos, int colliderYpos, bool isSelf);
 	void UpdateMove(float dt);
 };
 

@@ -2,20 +2,20 @@
 
 HashSnake::HashSnake(int startXpos, int startYpos, int bWidth, int bHeight) : Snake(startXpos, startYpos, bWidth, bHeight)
 {
-	m_Symbol = '#';
-	m_speed = 6;
+	this->m_Symbol = '#';
+	this->m_speed = 6;
 }
 
 void HashSnake::Update(float dt)
 {
-	if (m_latestTime == 0)
+	if (this->m_latestTime == 0)
 	{
-		m_latestTime = dt;
+		this->m_latestTime = dt;
 	}
-	if (dt >= m_latestTime + (1 / m_speed))
+	if (dt >= this->m_latestTime + (1 / this->m_speed))
 	{
 		UpdateMove(dt);
-		m_latestTime = dt;
+		this->m_latestTime = dt;
 	}
 	else
 	{

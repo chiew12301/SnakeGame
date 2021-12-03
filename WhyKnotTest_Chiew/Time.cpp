@@ -5,8 +5,8 @@ Time* Time::_instance = nullptr;
 Time::Time()
 {
 	Reset();
-	_TimeScale = 1.0f;
-	_DeltaTime = std::chrono::duration<float>(0.0f);
+	this->_TimeScale = 1.0f;
+	this->_DeltaTime = std::chrono::duration<float>(0.0f);
 }
 
 Time::~Time()
@@ -31,25 +31,25 @@ void Time::Release()
 
 void Time::Reset()
 {
-	_StartTime = std::chrono::system_clock::now();
+	this->_StartTime = std::chrono::system_clock::now();
 }
 
 float Time::DeltaTime()
 {
-	return _DeltaTime.count();
+	return this->_DeltaTime.count();
 }
 
 void Time::TimeScale(float t)
 {
-	_TimeScale = t;
+	this->_TimeScale = t;
 }
 
 float Time::TimeScale()
 {
-	return _TimeScale;
+	return this->_TimeScale;
 }
 
 void Time::Tick()
 {
-	_DeltaTime = std::chrono::system_clock::now() - _StartTime;
+	this->_DeltaTime = std::chrono::system_clock::now() - this->_StartTime;
 }
