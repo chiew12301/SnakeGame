@@ -32,10 +32,10 @@ ObjectCreation::~ObjectCreation()
 
 std::vector<Food*>& ObjectCreation::getFoodObjectsList()
 {
-	return m_FoodObjectList;
+	return this->m_FoodObjectList;
 }
 
 std::vector<Snake*>& ObjectCreation::getSnakesObjectsList()
 {
-	return m_SnakeObjectList;
+	return this->m_SnakeObjectList;
 }
