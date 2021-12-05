@@ -19,10 +19,10 @@ protected:
 	float m_speed;
 	Transform m_direction;
 
-public:
 	//Time
 	float m_latestTime;
 
+public:
 	Snake(int startXpos, int startYpos, int bWidth, int bHeight);
 	virtual void Update(float dt);
 	char getSnakeSymbol();
