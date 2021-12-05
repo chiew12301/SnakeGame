@@ -64,6 +64,22 @@ void GameSystem::GameLoop()
 
 void GameSystem::MainMenu()
 {
+	int shapeInput = 0;
+	do
+	{
+		cout << "\t\t\t\tSnake Game" << endl;
+		cout << "\t\t\tPlease Insert Board Shape" << endl;
+		cout << "\t\tKey 1 for Default Square/Rectangle Shape, Key 2 for Diamond Shape" << endl;
+		cout << "\t\tYour Choice:"; cin >> shapeInput;
+
+		if (shapeInput < 1 || shapeInput > 2) //Error meesage
+		{
+			system("CLS");
+			cout << "\t\tInvalid Input, Please ensure you key in 1 or 2 only." << endl;
+		}
+
+	} while (shapeInput < 1 || shapeInput > 2);
+	system("CLS");
 	do
 	{
 		cout << "\t\t\tPlease Key in Board Size" << endl;
@@ -75,7 +91,14 @@ void GameSystem::MainMenu()
 			if (this->m_boardHeight >= 20)
 			{
 				cout << "\t\tGenerating the map" << endl;
-				this->m_gameBoard = new Board(this->m_boardWidth, this->m_boardHeight);
+				if (shapeInput == 1)
+				{
+					this->m_gameBoard = new Board(this->m_boardWidth, this->m_boardHeight, this->m_gameBoard->DEFAULT);
+				}
+				else
+				{
+					this->m_gameBoard = new Board(this->m_boardWidth, this->m_boardHeight, this->m_gameBoard->DIAMOND);
+				}
 				this->m_ObjCreator = new ObjectCreation(this->m_boardWidth, this->m_boardHeight);
 				this->m_UIStatus = SnakeSelection;
 			}
@@ -176,25 +199,34 @@ bool GameSystem::CheckCollider()
 
 void GameSystem::CheckInput()
 {
+	Transform next_Move;
+	next_Move.setPosition(0, 0);
 	if (GetAsyncKeyState(VK_ESCAPE))
 	{
 		this->m_UIStatus = ExitGame;
 	}
 	else if (GetAsyncKeyState(VK_UP))
 	{
-		this->m_ObjCreator->getSnake()->changeDirection(this->m_ObjCreator->getSnake()->UP);
+		next_Move.setPosition(0, -1);
 	}
 	else if (GetAsyncKeyState(VK_DOWN))
 	{
-		this->m_ObjCreator->getSnake()->changeDirection(this->m_ObjCreator->getSnake()->DOWN);
+		next_Move.setPosition(0, 1);
 	}
 	else if (GetAsyncKeyState(VK_LEFT))
 	{
-		this->m_ObjCreator->getSnake()->changeDirection(this->m_ObjCreator->getSnake()->LEFT);
+		next_Move.setPosition(-1, 0);
 	}
 	else if (GetAsyncKeyState(VK_RIGHT))
 	{
-		this->m_ObjCreator->getSnake()->changeDirection(this->m_ObjCreator->getSnake()->RIGHT);
+		next_Move.setPosition(1, 0);
+	}
+
+	if (next_Move.getXPosition() == 0 && next_Move.getYPosition() == 0){//do nothing
+	}
+	else
+	{
+		this->m_ObjCreator->getSnake()->changeDirection(next_Move);
 	}
 }
 

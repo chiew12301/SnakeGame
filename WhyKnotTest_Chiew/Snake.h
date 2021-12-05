@@ -4,20 +4,12 @@
 #include <stdlib.h>
 #include <vector>
 #include "Transform.h"
+
 //reason of it was snake was a sub class based. So it can't be used all header file. Meant to designed as "Game Object" typed.
 
 class Snake
 {
-public:
-	enum DIRECTION
-	{
-		UP = 0,
-		DOWN,
-		LEFT,
-		RIGHT
-	};
 protected:
-
 	int m_boardWidth;
 	int m_boardHeight;
 	int m_CurrentBodySize;
@@ -25,18 +17,18 @@ protected:
 	Transform m_Transform; //Basically act as head of the transform
 	char m_Symbol;
 	float m_speed;
-	DIRECTION m_direction;
+	Transform m_direction;
 
+public:
 	//Time
 	float m_latestTime;
 
-public:
 	Snake(int startXpos, int startYpos, int bWidth, int bHeight);
 	virtual void Update(float dt);
 	char getSnakeSymbol();
 	int getXpos();
 	int getYpos();
-	void changeDirection(DIRECTION dir);
+	void changeDirection(Transform dir);
 	void GrowBody();
 	std::vector<Transform> getBody();
 	bool collision(int colliderXpos, int colliderYpos, bool isSelf);
