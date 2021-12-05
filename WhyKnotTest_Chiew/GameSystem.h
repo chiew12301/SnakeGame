@@ -4,18 +4,21 @@
 class Board;
 class Snake;
 class Time;
+class ObjectCreation;
 
 class GameSystem
 {
 private:
 	Board* m_gameBoard; //Reason have pointer is this storing quite few data. If the game is getting bigger, is better allocate our self.
 	Time* m_gameTime; //Reason have pointer is this is because of instance.
+	ObjectCreation* m_ObjCreator;
 
 	enum GameUIStatus
 	{
 		MapEditUI = 0,
 		SnakeSelection,
 		InGame,
+		EndGameMenu,
 		ExitGame
 	};
 
@@ -37,6 +40,8 @@ private:
 	bool CheckCollider();
 
 	void CheckInput();
+
+	void EndGameMenuMethod();
 
 public:
 	GameSystem();

@@ -88,7 +88,7 @@ void Snake::UpdateMove(float dt)
 	case(1):
 		if (this->m_Transform.getYPosition() + 1 > this->m_boardHeight)
 		{
-			this->m_Transform.setPosition(this->m_Transform.getXPosition(), (this->m_Transform.getYPosition()) - this->m_boardHeight);
+			this->m_Transform.setPosition(this->m_Transform.getXPosition(), (this->m_Transform.getYPosition()) - this->m_boardHeight + 1);
 		}
 		else
 		{

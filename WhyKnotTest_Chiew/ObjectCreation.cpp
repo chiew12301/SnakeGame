@@ -28,6 +28,26 @@ ObjectCreation::~ObjectCreation()
 		delete p;
 	}
 	this->m_SnakeObjectList.clear(); //free memories
+	this->m_snake = NULL;
+	delete this->m_snake;
+}
+
+void ObjectCreation::Update(float dt)
+{
+	this->m_snake->Update(dt);
+}
+
+/// <summary>This is to set snake data.
+/// <para>'1' as snake 1, '2' as snake 2, '3' as snake 3</para>
+/// </summary>
+void ObjectCreation::setSnakeData(int i)
+{
+	this->m_snake = this->getSnakesObjectsList()[i - 1];
+}
+
+Snake* ObjectCreation::getSnake()
+{
+	return this->m_snake;
 }
 
 std::vector<Food*>& ObjectCreation::getFoodObjectsList()
