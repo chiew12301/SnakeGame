@@ -1,6 +1,6 @@
 #include "DefaultBoard.h"
 
-void DefaultBoard::drawBoard(float dt, ObjectCreation* objCreator)
+void DefaultBoard::drawBoard(ObjectCreation* objCreator)
 {
 	for (int i = 0; i <= this->m_HEIGHT + 1; i++)
 	{

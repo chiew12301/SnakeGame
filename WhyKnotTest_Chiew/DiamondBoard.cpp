@@ -1,6 +1,6 @@
 #include "DiamondBoard.h"
 
-void DiamondBoard::drawBoard(float dt, ObjectCreation* objCreator)
+void DiamondBoard::drawBoard(ObjectCreation* objCreator)
 {
 	for (int i = 0; i <= this->m_HEIGHT + 1; i++)
 	{

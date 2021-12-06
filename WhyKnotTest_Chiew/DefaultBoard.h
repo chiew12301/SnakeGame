@@ -4,7 +4,7 @@
 class DefaultBoard : public Board
 {
 protected:
-	void drawBoard(float dt, ObjectCreation* objCreator);
+	void drawBoard(ObjectCreation* objCreator);
 public:
 	DefaultBoard(int widthSize, int heightSize, ObjectCreation* objCreator);
 };

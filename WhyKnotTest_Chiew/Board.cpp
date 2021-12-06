@@ -1,6 +1,6 @@
 #include "Board.h"
 
-void Board::drawBoard(float dt, ObjectCreation* objCreator) //perform draw board
+void Board::drawBoard(ObjectCreation* objCreator) //perform draw board
 {
 	//let the child do the work
 }
@@ -20,5 +20,5 @@ Board::~Board()
 
 void Board::Update(float dt, ObjectCreation* objCreator) //update all the snake and food and perform draw board with the update
 {
-	drawBoard(dt, objCreator);
+	drawBoard(objCreator);
 }

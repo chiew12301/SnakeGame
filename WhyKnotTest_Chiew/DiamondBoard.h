@@ -4,7 +4,7 @@
 class DiamondBoard : public Board
 {
 protected:
-	void drawBoard(float dt, ObjectCreation* objCreator);
+	void drawBoard(ObjectCreation* objCreator);
 public:
 	DiamondBoard(int widthSize, int heightSize, ObjectCreation* objCreator);
 };

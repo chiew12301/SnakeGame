@@ -11,7 +11,7 @@ class Board
 protected:
 	int m_WIDTH;
 	int m_HEIGHT;
-	virtual void drawBoard(float dt, ObjectCreation* objCreator);
+	virtual void drawBoard(ObjectCreation* objCreator);
 
 public:
 	Board(int widthSize, int heightSize, ObjectCreation* objCreator);
