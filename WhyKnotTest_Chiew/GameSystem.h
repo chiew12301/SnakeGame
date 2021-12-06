@@ -2,7 +2,6 @@
 #include "AllHeaderFile.h"
 
 class Board;
-class Snake;
 class Time;
 class ObjectCreation;
 

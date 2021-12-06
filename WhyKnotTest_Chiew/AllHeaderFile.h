@@ -26,10 +26,14 @@ Numbers after 15 are background colors
 
 //Below are game file
 #include "GameSystem.h"
-#include "Board.h"
 #include "Time.h"
 #include "Transform.h"
 #include "ObjectCreation.h"
+
+//Board Class
+#include "Board.h"
+#include "DiamondBoard.h"
+#include "DefaultBoard.h"
 
 //FoodClass
 #include "Food.h"
@@ -43,5 +47,7 @@ Numbers after 15 are background colors
 #include "OakSnake.h"
 #include "HashSnake.h"
 
+//ExtraObject
+#include "InnerWall.h"
 
 using namespace std;

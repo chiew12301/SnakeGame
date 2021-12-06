@@ -91,15 +91,15 @@ void GameSystem::MainMenu()
 			if (this->m_boardHeight >= 20)
 			{
 				cout << "\t\tGenerating the map" << endl;
+				this->m_ObjCreator = new ObjectCreation(this->m_boardWidth, this->m_boardHeight);
 				if (shapeInput == 1)
 				{
-					this->m_gameBoard = new Board(this->m_boardWidth, this->m_boardHeight, this->m_gameBoard->DEFAULT);
+					this->m_gameBoard = new DefaultBoard(this->m_boardWidth, this->m_boardHeight, this->m_ObjCreator);
 				}
 				else
 				{
-					this->m_gameBoard = new Board(this->m_boardWidth, this->m_boardHeight, this->m_gameBoard->DIAMOND);
+					this->m_gameBoard = new DiamondBoard(this->m_boardWidth, this->m_boardHeight, this->m_ObjCreator);
 				}
-				this->m_ObjCreator = new ObjectCreation(this->m_boardWidth, this->m_boardHeight);
 				this->m_UIStatus = SnakeSelection;
 			}
 			else
@@ -170,7 +170,7 @@ bool GameSystem::CheckCollider()
 	{
 		return true;
 	}
-	else if (this->m_ObjCreator->getFoodObjectsList().size()> 0) //check only when it has foods, and is not hit body
+	else if (this->m_ObjCreator->getFoodObjectsList().size()> 0 || this->m_ObjCreator->getWallObjectsList().size() > 0) //check only when it has foods/wall, and is not hit body
 	{
 		for (int i = 0; i < this->m_ObjCreator->getFoodObjectsList().size(); i++) //loop the vector
 		{
@@ -188,6 +188,16 @@ bool GameSystem::CheckCollider()
 					break;
 				}
 				else //means different symbol, die and same symbol
+				{
+					return true;
+				}
+			}
+		} //Exit if no collide with foods
+		if (this->m_ObjCreator->getWallObjectsList().size() > 0) //if have wall
+		{
+			for (int wallCount = 0; wallCount < this->m_ObjCreator->getWallObjectsList().size(); wallCount++) //loop the data from object creator
+			{
+				if (this->m_ObjCreator->getSnake()->collision(this->m_ObjCreator->getWallObjectsList()[wallCount]->getTransform().getXPosition(), this->m_ObjCreator->getWallObjectsList()[wallCount]->getTransform().getYPosition(), false))
 				{
 					return true;
 				}

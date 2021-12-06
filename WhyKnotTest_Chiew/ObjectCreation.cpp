@@ -28,6 +28,11 @@ ObjectCreation::~ObjectCreation()
 		delete p;
 	}
 	this->m_SnakeObjectList.clear(); //free memories
+	for (auto p : this->m_WallObjectList)
+	{
+		delete p;
+	}
+	this->m_WallObjectList.clear(); //free memories
 	this->m_snake = NULL;
 	delete this->m_snake;
 }
@@ -58,4 +63,14 @@ std::vector<Food*>& ObjectCreation::getFoodObjectsList()
 std::vector<Snake*>& ObjectCreation::getSnakesObjectsList()
 {
 	return this->m_SnakeObjectList;
+}
+
+std::vector<InnerWall*> ObjectCreation::getWallObjectsList()
+{
+	return this->m_WallObjectList;
+}
+
+void ObjectCreation::addWallObject(InnerWall* newWall)
+{
+	this->m_WallObjectList.push_back(newWall);
 }

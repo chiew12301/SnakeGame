@@ -140,8 +140,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="DefaultBoard.cpp" />
+    <ClCompile Include="DiamondBoard.cpp" />
     <ClCompile Include="Food.cpp" />
     <ClCompile Include="AirFood.cpp" />
+    <ClCompile Include="InnerWall.cpp" />
     <ClCompile Include="OakFood.cpp" />
     <ClCompile Include="HashFood.cpp" />
     <ClCompile Include="GameSystem.cpp" />
@@ -157,8 +160,11 @@
   <ItemGroup>
     <ClInclude Include="AllHeaderFile.h" />
     <ClInclude Include="Board.h" />
+    <ClInclude Include="DefaultBoard.h" />
+    <ClInclude Include="DiamondBoard.h" />
     <ClInclude Include="Food.h" />
     <ClInclude Include="AirFood.h" />
+    <ClInclude Include="InnerWall.h" />
     <ClInclude Include="OakFood.h" />
     <ClInclude Include="HashFood.h" />
     <ClInclude Include="GameSystem.h" />

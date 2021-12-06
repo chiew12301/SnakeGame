@@ -37,6 +37,18 @@
     <Filter Include="Source Files\System">
       <UniqueIdentifier>{4ec1e282-3bcd-4125-b3f2-df4f8ef99390}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\MapObject">
+      <UniqueIdentifier>{0c91df3d-d53f-4eb1-a0b2-5db512198340}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MapObject">
+      <UniqueIdentifier>{027f81ff-bdc4-4ccb-a7cd-41118f2e9226}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Render">
+      <UniqueIdentifier>{c71af361-ed79-4c9e-bc8b-a66480afd973}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Render">
+      <UniqueIdentifier>{9e4c337f-3e74-49d1-9690-7b106cb904ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -63,9 +75,6 @@
     <ClCompile Include="Transform.cpp">
       <Filter>Source Files\Element</Filter>
     </ClCompile>
-    <ClCompile Include="Board.cpp">
-      <Filter>Source Files\System</Filter>
-    </ClCompile>
     <ClCompile Include="GameSystem.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
@@ -80,6 +89,18 @@
     </ClCompile>
     <ClCompile Include="ObjectCreation.cpp">
       <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="InnerWall.cpp">
+      <Filter>Source Files\MapObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>Source Files\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="DiamondBoard.cpp">
+      <Filter>Source Files\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultBoard.cpp">
+      <Filter>Source Files\Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,9 +131,6 @@
     <ClInclude Include="GameSystem.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="Board.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
     <ClInclude Include="AirFood.h">
       <Filter>Header Files\Foods</Filter>
     </ClInclude>
@@ -124,6 +142,18 @@
     </ClInclude>
     <ClInclude Include="ObjectCreation.h">
       <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="InnerWall.h">
+      <Filter>Header Files\MapObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>Header Files\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="DiamondBoard.h">
+      <Filter>Header Files\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultBoard.h">
+      <Filter>Header Files\Render</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
