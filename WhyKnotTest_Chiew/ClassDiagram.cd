@@ -71,14 +71,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="AirSnake">
-    <Position X="5" Y="9.75" Width="1.5" />
+    <Position X="5.25" Y="10.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>AirSnake.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OakSnake">
-    <Position X="6.75" Y="9.75" Width="1.5" />
+    <Position X="7" Y="10.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
       <FileName>OakSnake.h</FileName>
@@ -87,12 +87,12 @@
   <Class Name="Snake">
     <Position X="6.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAQAgAIIAAEQAABKAgAAAAAAIAYIIggAAAAQAAAAAAA=</HashCode>
+      <HashCode>BAQAgAoIAAEQAABKAgAAAAAAIAYIIggAAAAQAAAAAAA=</HashCode>
       <FileName>Snake.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HashSnake">
-    <Position X="8.5" Y="9.75" Width="1.5" />
+    <Position X="8.75" Y="10.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>HashSnake.h</FileName>

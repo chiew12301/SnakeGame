@@ -22,7 +22,7 @@ void DiamondBoard::drawBoard(ObjectCreation* objCreator)
 					if (i + j <= this->m_WIDTH / 2 || i + this->m_WIDTH / 2 - 1 <= j || (i - this->m_HEIGHT / 2 > j && i > this->m_HEIGHT / 2)
 						|| (i - this->m_HEIGHT / 2 >= this->m_HEIGHT - j && i > this->m_HEIGHT / 2))
 					{
-						cout << objCreator->getWallObjectsList()[0]->getSymbol();
+						cout << objCreator->getWallObjectsList()[i+j]->getSymbol();
 						isWallSpawned = true;
 					}
 

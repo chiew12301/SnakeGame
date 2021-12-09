@@ -1,6 +1,6 @@
 #include "Snake.h"
 
-Snake::Snake(int startXpos, int startYpos, int bWidth, int bHeight)
+Snake::Snake(int startXpos, int startYpos, int bWidth, int bHeight, std::string boardName)
 {
 	this->m_Transform.setPosition(startXpos, startYpos);
 	this->m_boardWidth = bWidth;
@@ -8,11 +8,11 @@ Snake::Snake(int startXpos, int startYpos, int bWidth, int bHeight)
 	this->m_CurrentBodySize = 1;
 	this->m_direction.setPosition(0,1);
 	this->m_latestTime = 0.0f;
-
+	this->m_currentBoardName = boardName;
 	this->m_bodyTransform.push_back(m_Transform);
 }
 
-void Snake::Update(float dt)
+void Snake::Update(float dt, ObjectCreation* objCreator)
 {
 	//sub class will handle themself
 }
@@ -59,6 +59,11 @@ void Snake::changeDirection(Transform dir)
 
 }
 
+Transform Snake::getDirection()
+{
+	return this->m_direction;
+}
+
 void Snake::GrowBody()
 {//add body into the vector list
 	this->m_CurrentBodySize++;
@@ -90,7 +95,7 @@ bool Snake::collision(int colliderXpos, int colliderYpos, bool isSelf)
 	return false;
 }
 
-void Snake::UpdateMove(float dt)
+void Snake::UpdateMove(float dt, ObjectCreation* objCreator)
 {
 	this->m_Transform.setPosition(this->m_Transform.getXPosition() + this->m_direction.getXPosition(), this->m_Transform.getYPosition() + this->m_direction.getYPosition());
 	//Checking for exiting border
@@ -111,8 +116,41 @@ void Snake::UpdateMove(float dt)
 		this->m_Transform.setPosition((this->m_Transform.getXPosition()) - this->m_boardWidth, this->m_Transform.getYPosition());
 	}
 
-
-
+	//checking for the inner wall
+	if (this->m_currentBoardName != "DefaultBoard") //ignore default
+	{
+		if (objCreator->getWallObjectsList().size() > 0)//enter if there's one or more
+		{
+			for (int i = 0; i < objCreator->getWallObjectsList().size(); i++)
+			{
+				if (this->m_direction.getXPosition() == -1 &&
+					this->m_Transform.getXPosition() == objCreator->getWallObjectsList()[i]->getTransform().getXPosition() &&
+					this->m_Transform.getYPosition() == objCreator->getWallObjectsList()[i]->getTransform().getYPosition()) //moving left
+				{
+					this->m_Transform.setPosition(objCreator->getWallObjectsList()[i + 1]->getTransform().getXPosition() - 1, objCreator->getWallObjectsList()[i + 1]->getTransform().getYPosition());
+				}
+				else if (this->m_direction.getXPosition() == 1 &&
+					this->m_Transform.getXPosition() == objCreator->getWallObjectsList()[i]->getTransform().getXPosition() &&
+					this->m_Transform.getYPosition() == objCreator->getWallObjectsList()[i]->getTransform().getYPosition()) //moving right
+				{
+					this->m_Transform.setPosition(objCreator->getWallObjectsList()[i - 1]->getTransform().getXPosition() + 1, objCreator->getWallObjectsList()[i - 1]->getTransform().getYPosition());
+				}
+				else if (this->m_direction.getYPosition() == -1 &&
+					this->m_Transform.getXPosition() == objCreator->getWallObjectsList()[i]->getTransform().getXPosition() &&
+					this->m_Transform.getYPosition() == objCreator->getWallObjectsList()[i]->getTransform().getYPosition()) //moving Up
+				{
+					this->m_Transform.setPosition(objCreator->getWallObjectsList()[i]->getTransform().getXPosition(), (this->m_boardHeight - objCreator->getWallObjectsList()[i]->getTransform().getYPosition()));
+				}
+				else if (this->m_direction.getYPosition() == 1 &&
+					this->m_Transform.getXPosition() == objCreator->getWallObjectsList()[i]->getTransform().getXPosition() &&
+					this->m_Transform.getYPosition() == objCreator->getWallObjectsList()[i]->getTransform().getYPosition()) //moving Down
+				{
+					this->m_Transform.setPosition(objCreator->getWallObjectsList()[i]->getTransform().getXPosition(),
+						((objCreator->getWallObjectsList()[i]->getTransform().getYPosition() - (objCreator->getWallObjectsList()[i]->getTransform().getYPosition() - 1)) + (this->m_boardHeight - objCreator->getWallObjectsList()[i]->getTransform().getYPosition())));
+				}
+			}
+		}
+	}	
 
 	this->m_bodyTransform.push_back(this->m_Transform);
 	if (this->m_bodyTransform.size() > this->m_CurrentBodySize)

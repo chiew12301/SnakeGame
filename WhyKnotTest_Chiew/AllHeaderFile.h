@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <vector>
+#include <string>
 
 //Color List
 /*1:Blue

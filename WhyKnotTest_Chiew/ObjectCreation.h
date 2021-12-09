@@ -14,7 +14,7 @@ private:
 	std::vector<Food*> m_FoodObjectList;
 	std::vector<InnerWall*> m_WallObjectList;
 public:
-	ObjectCreation(int widthSize, int heightSize);
+	ObjectCreation(int widthSize, int heightSize, std::string boardName);
 	~ObjectCreation();;
 
 	void Update(float dt);

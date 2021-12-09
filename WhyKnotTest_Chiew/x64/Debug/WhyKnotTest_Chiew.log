@@ -1,1 +1,42 @@
-﻿  WhyKnotTest_Chiew.vcxproj -> D:\Chiew Jia Hong\Assignment\WhyKnotTest\Github\SnakeGame\WhyKnotTest_Chiew\x64\Debug\WhyKnotTest_Chiew.exe
+﻿  AirFood.cpp
+  enter object
+  Declearing object
+  AirSnake.cpp
+  enter object
+  Declearing object
+  Board.cpp
+  enter object
+  Declearing object
+  DefaultBoard.cpp
+  enter object
+  Declearing object
+  DiamondBoard.cpp
+  enter object
+  Declearing object
+  GameSystem.cpp
+  enter object
+  Declearing object
+  HashFood.cpp
+  enter object
+  Declearing object
+  HashSnake.cpp
+  enter object
+  Declearing object
+  Main.cpp
+  enter object
+  Declearing object
+D:\Chiew Jia Hong\Assignment\WhyKnotTest\Github\SnakeGame\WhyKnotTest_Chiew\Main.cpp(11,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  OakFood.cpp
+  enter object
+  Declearing object
+  OakSnake.cpp
+  enter object
+  Declearing object
+  ObjectCreation.cpp
+  enter object
+  Declearing object
+  Snake.cpp
+  enter object
+  Declearing object
+  Generating Code...
+  WhyKnotTest_Chiew.vcxproj -> D:\Chiew Jia Hong\Assignment\WhyKnotTest\Github\SnakeGame\WhyKnotTest_Chiew\x64\Debug\WhyKnotTest_Chiew.exe

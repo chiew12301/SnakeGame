@@ -1,6 +1,6 @@
 #include "ObjectCreation.h"
 
-ObjectCreation::ObjectCreation(int widthSize, int heightSize)
+ObjectCreation::ObjectCreation(int widthSize, int heightSize, std::string boardName)
 {
 	Food* food1 = new AirFood(2, 2, widthSize, heightSize);
 	this->m_FoodObjectList.push_back(food1);
@@ -8,11 +8,11 @@ ObjectCreation::ObjectCreation(int widthSize, int heightSize)
 	this->m_FoodObjectList.push_back(food2);
 	Food* food3 = new HashFood(5, 5, widthSize, heightSize);
 	this->m_FoodObjectList.push_back(food3);
-	Snake* snakeAir = new AirSnake(widthSize / 2, heightSize / 2, widthSize, heightSize);
+	Snake* snakeAir = new AirSnake(widthSize / 2, heightSize / 2, widthSize, heightSize, boardName);
 	this->m_SnakeObjectList.push_back(snakeAir);
-	Snake* snakeOak = new OakSnake(widthSize / 2, heightSize / 2, widthSize, heightSize);
+	Snake* snakeOak = new OakSnake(widthSize / 2, heightSize / 2, widthSize, heightSize, boardName);
 	this->m_SnakeObjectList.push_back(snakeOak);
-	Snake* snakeHash = new HashSnake(widthSize / 2, heightSize / 2, widthSize, heightSize);
+	Snake* snakeHash = new HashSnake(widthSize / 2, heightSize / 2, widthSize, heightSize, boardName);
 	this->m_SnakeObjectList.push_back(snakeHash);
 }
 
@@ -39,7 +39,7 @@ ObjectCreation::~ObjectCreation()
 
 void ObjectCreation::Update(float dt)
 {
-	this->m_snake->Update(dt);
+	this->m_snake->Update(dt, this);
 }
 
 /// <summary>This is to set snake data.
